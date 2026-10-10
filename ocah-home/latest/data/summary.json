@@ -57,27 +57,27 @@
       "tool": "vcs"
     },
     {
-      "coverage_total_percent": 94.66,
+      "coverage_total_percent": 94.6,
       "flow": "smc",
       "framework": "cocotb",
       "pass_rate": 99.68,
-      "tests_total": 317,
+      "tests_total": 951,
       "tool": "vcs"
     },
     {
-      "coverage_total_percent": 36.92,
+      "coverage_total_percent": 36.03,
       "flow": "smc",
       "framework": "uvm",
       "pass_rate": 100.0,
-      "tests_total": 6,
+      "tests_total": 18,
       "tool": "vcs"
     },
     {
-      "coverage_total_percent": 94.33,
+      "coverage_total_percent": 94.21,
       "flow": "smc",
       "framework": "",
       "pass_rate": 99.69,
-      "tests_total": 323,
+      "tests_total": 969,
       "tool": "vcs"
     },
     {
@@ -105,7 +105,7 @@
       "tool": "vcs"
     }
   ],
-  "generated_at": "2026-10-10T16:42:57+00:00",
+  "generated_at": "2026-10-10T20:33:46+00:00",
   "results": [
     {
       "coverage": {
@@ -221,9 +221,9 @@
     {
       "coverage": {
         "effective_metrics": {
-          "assertion": 96.35,
-          "branch": 87.68,
-          "condition": 89.28,
+          "assertion": 95.66,
+          "branch": 88.11,
+          "condition": 89.12,
           "fsm_state": 97.24,
           "functional": 98.29,
           "line": 99.74,
@@ -238,12 +238,12 @@
     {
       "coverage": {
         "effective_metrics": {
-          "assertion": 59.98,
-          "branch": 53.17,
-          "condition": 31.65,
+          "assertion": 52.92,
+          "branch": 54.67,
+          "condition": 30.74,
           "fsm_state": 4.26,
           "functional": 36.12,
-          "line": 69.93,
+          "line": 70.21,
           "toggle": 3.3,
           "user": 23.4252
         }
@@ -255,9 +255,9 @@
     {
       "coverage": {
         "effective_metrics": {
-          "assertion": 93.97,
-          "branch": 87.68,
-          "condition": 89.33,
+          "assertion": 92.91,
+          "branch": 88.11,
+          "condition": 89.17,
           "fsm_state": 97.24,
           "functional": 98.29,
           "line": 99.74,
