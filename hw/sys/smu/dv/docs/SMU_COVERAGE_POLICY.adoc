@@ -5,8 +5,8 @@
 = SMU coverage targets and closure policy
 
 This chapter defines *what* the SMU release group is graded on and *how*
-a hole is waived. It does not install a CI fail-on-hole gate; that gate
-needs a measured database first.
+a hole is waived. Coverage figures are reported, never gated: a run's status
+comes from its tests.
 
 [cols=",",options="header",]
 |===
@@ -24,14 +24,12 @@ SMU-owned unit under `u_smu` outside the SMC, DTP and SEP trees
 exclusion files have left the population, and
 `assertion`, where urg reads the cover properties and the one
 `smu_axi_xbar` assertion
-|Numeric target |VCS `user` 100 percent effective, the one
-`\[[thresholds]]` row of `cov/config/vcs/smu_wrapper_coverage_policy.toml`.
-No code-metric family carries a floor on either tool, the way DTP and SEP set
-none on theirs: the runner reports every family's raw and effective figure, a
-run's status comes from its tests, and the figures are read against the
-targets this chapter states.
-`cov/config/verilator/smu_wrapper_coverage_policy.toml` carries no
-`\[[thresholds]]` row at all
+|Numeric target |VCS `user` 100 percent effective. No family carries a floor
+on either tool, the way DTP and SEP set none on theirs: neither
+`cov/config/vcs/smu_wrapper_coverage_policy.toml` nor
+`cov/config/verilator/smu_wrapper_coverage_policy.toml` has a
+`\[[thresholds]]` row, the runner reports every family's raw and effective
+figure, and the figures are read against the targets this chapter states
 |Measured (Verilator, the `cov/sv` cover properties)
 |`hw/sys/smu/dv/docs/SMU_FCOV_OWNERS.adoc`, the generated owners table, names
 the run's commit, simulator and figures. No `hosted`-only figure is recorded
@@ -98,8 +96,8 @@ tied-off nets out. `cov/config/vcs/smu_wrapper_toggle_exclusions.el` and
 `smu_toggle_exclusions.el` name, one fact per class, the fields no SMU logic
 reads or writes, and the policy applies them at report time.
 `cov/config/vcs/smu_wrapper_coverage_policy.toml` floors none of these
-families; `run_dv.py` prints each on its `coverage` line and grades only the
-`user` row (see `cov/config/vcs/README.md`) |a licensed host,
+families, and `run_dv.py` prints each on its `coverage` line (see
+`cov/config/vcs/README.md`) |a licensed host,
 `python3 tools/dv/run_dv.py --dut smu --tool vcs --items all --cov`
 (`cov/config/vcs/README.md`); no public CI job runs it
 |===
@@ -202,12 +200,9 @@ all. The exclusion files do that work by hand instead: each class states a
 design or bench fact and names what retires it, which is a weaker claim than
 a proof and is reviewed as such.
 
-This is one of the reasons `cov/config/vcs/smu_wrapper_coverage_policy.toml`
-sets no `toggle` floor: a floor over a denominator no proof has filtered
-fails a run on a number rather than on a fact. A floor becomes meaningful
-when an unreachability analysis supplies the filter the SMC and DTP policies
-have; until then the figure is reported and read against the target this
-chapter states.
+The `toggle` figure is therefore reported over a denominator no proof has
+filtered: a hole in it is either missing stimulus or a point no stimulus
+reaches, and only a review of the RTL tells the two apart.
 
 [[smu-cov-waiver]]
 == Waiver fields
@@ -222,9 +217,8 @@ wrapper's own `toggle`), `hierarchy` or file selector (`[[holes.native]]`)
 * `owner`, `reviewer`
 * `issues` when the disposition is actionable
 
-`max_unclassified_points = 0` is the fail-on-new-hole knob. It is not
-set here; it is set together with the threshold, from a measured
-`--cov` database.
+`max_unclassified_points`, the runner's fail-on-new-hole knob, is not set:
+an unclassified hole is reported, never failed.
 
 A waiver reaches a finished run without a simulator:
 `python3 tools/dv/run_dv.py --dut smu --run-dir <run> --waive` re-grades

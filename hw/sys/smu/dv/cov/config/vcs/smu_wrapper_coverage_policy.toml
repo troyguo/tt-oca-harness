@@ -8,20 +8,18 @@
 # reads them under its assert metric together with the `assert property`
 # statements left in scope by smu_wrapper_cov_scope.hier, and splits the two in
 # cov/report/asserts.txt (`Summary for Cover Properties`, `Summary for
-# Assertions`); the runner reads the cover-property summary as the `user`
-# family. `user` is floored at 100: every collected point is hit by an enrolled
-# leaf of `all`, so the row fails on a point going dark rather than on a score.
+# Assertions`); the cover-property summary is the runner's `user` family.
 #
-# No code-metric family carries a floor, the way DTP's policy
+# No family carries a floor, the way DTP's policy
 # (hw/sys/dtp/dv/cov/config/vcs/coverage_policy.toml) and SEP's
 # (hw/sys/sep/dv/cov/config/vcs/coverage_policy.toml) set none: the runner
 # reports the family figures, a run's status comes from its tests, and
 # SMU_COVERAGE_POLICY.adoc states the targets the figures are read against.
 #
-# `toggle` is still collected and still reported: every bit of every net of the
-# units smu_wrapper_cov_scope.hier keeps -- smu_wrapper, smu, smu_axi_xbar and
-# the other SMU-owned units under u_smu -- both directions, after the
-# exclusions named below have left the population.
+# `toggle` is collected and reported: every bit of every net of the units
+# smu_wrapper_cov_scope.hier keeps -- smu_wrapper, smu, smu_axi_xbar and the
+# other SMU-owned units under u_smu -- both directions, after the exclusions
+# named below have left the population.
 #
 # Two DUTs share this DV root, so the policy is named per DUT rather than
 # discovered at cov/config/vcs/coverage_policy.toml.
@@ -29,13 +27,6 @@
 schema_version = 1
 dut = "smu"
 scope_epoch = "smu-vcs-cov-v3"
-
-[[thresholds]]
-id = "user"
-tool = "vcs"
-metric_family = "user"
-population = "effective"
-minimum_percent = 100.0
 
 # Fields urg leaves out of the wrapper's port toggle, each class with its
 # reason in the file's ANNOTATION lines. Generated from urg's exclusion

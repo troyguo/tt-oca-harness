@@ -478,8 +478,7 @@ under `u_dut` that no class names.
   alone reaches depends on that leaf.
 . *`smu_fcov.py` sources no coverage claim.*
 . *No CI gate is set on these numbers.* `SMU_COVERAGE_POLICY.adoc` states the
-  targets the figures are read against, and why no code-metric family carries
-  a floor.
+  targets the figures are read against, and why no family carries a floor.
 
 ==== Evidence
 

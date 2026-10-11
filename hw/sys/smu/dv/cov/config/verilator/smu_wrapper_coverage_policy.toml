@@ -9,12 +9,10 @@
 # `all` is the coverage set, as it is for SEP; `hosted` is its toolchain-free
 # subset and leaves the SEP firmware and lifecycle stimulus out.
 #
-# No floor is set on the `user` family; one is set only from a measured
-# weekly `--cov` database, by the SMU DV owner, together with
-# `max_unclassified_points` -- see SMU_COVERAGE_POLICY.adoc. The effective
-# percentage is still reported, just not gated. The Verilator set does not
-# collect toggle; the wrapper's toggle is graded on the VCS flow by
-# ../vcs/smu_wrapper_coverage_policy.toml.
+# No floor and no `max_unclassified_points` are set on the `user` family: the
+# effective percentage is reported, never gated (SMU_COVERAGE_POLICY.adoc).
+# The Verilator set does not collect toggle; the wrapper's toggle is graded on
+# the VCS flow by ../vcs/smu_wrapper_coverage_policy.toml.
 #
 # The wrapper has one target, `compile_smu_chiplet`, with SEP elaborated. An
 # accepted waiver whose selector matches a COVERED point is a hard
